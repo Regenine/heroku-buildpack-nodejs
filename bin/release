@@ -4,6 +4,5 @@
 cat << EOF
 addons: []
 default_process_types:
-  web: npm install --prefix /app/admin-ui
-  web: npm start
+  web: npm run-script start-with-adminui-install
 EOF
