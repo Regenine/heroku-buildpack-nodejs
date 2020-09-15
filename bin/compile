@@ -391,6 +391,9 @@ summarize_build() {
 meta_set "build-step" "install-metrics-plugin"
 install_plugin "$BP_DIR" "$BUILD_DIR"
 
+header "Admin ui install"  | output "$LOG_FILE"
+npm_node_modules "$BUILD_DIR/admin-ui" | output "$LOG_FILE"
+
 meta_set "build-step" "summarize"
 header "Build succeeded!" | output "$LOG_FILE"
 mcount "compile"
@@ -405,11 +408,3 @@ warn_old_npm_lockfile $NPM_LOCK
 meta_set "build-step" "finished"
 log_meta_data >> "$BUILDPACK_LOG_FILE"
 
-header "Admin ui install"  | output "$LOG_FILE"
-ls | output "$LOG_FILE"
-cd "/app"
-ls | output "$LOG_FILE"
-cd "$BUILD_DIR/admin-ui"
-pwd | output "$LOG_FILE"
-# npm_node_modules "$BUILD_DIR/admin-ui" | output "$LOG_FILE"
-# npm install | output "$LOG_FILE"
